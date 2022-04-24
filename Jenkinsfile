@@ -1,20 +1,23 @@
-node('master')
-
+node('master') 
 {
-
-stage('ContinuousDownload_master') 
-   
-	 {
-	
-    git 'https://github.com/ttnwt/webapp.git'
-    
-	}
-
-stage('Continuousbuild_master') 
-   
-	 {
-	
-   sh label: '', script: 'mvn package'
-	}
+    stage('Continuous Download')
+                   {
+                     git branch: 'feature', credentialsId: 'me', url: 'https://github.com/ttnwt/webapp.git'
+                   }
+    stage('Continuous build')
+                   {
+                    sh 'mvn package'
+                   }
+    stage('Continuous deployment')
+                   {
+                    deploy adapters: [tomcat8(credentialsId: 'qa', path: '', url: 'http://172.31.88.197:8080')], contextPath: 'qaenv', war: '**/*.war'
+                   }
+    stage('Continuous testing')
+                   {
+                    sh 'echo "testing has passed"'
+                   }
+     stage('Continuous delivery')
+                   {
+                    deploy adapters: [tomcat8(credentialsId: 'prodep', path: '', url: 'http://172.31.95.153:8080')], contextPath: 'catenv', war: '**/*.war'
+                   }
 }
-
