@@ -2,8 +2,8 @@ node('build-in')
 {
     stage('Continuous Download')
                    {
-                     git branch: 'nonso', credentialsId: 'cd', url: 'https://https://github.com/ttnwt/mul.git'
-                   }
+                     git branch: 'nonso', credentialsId: 'cd', url: 'https://github.com/ttnwt/webapp.git'
+                   }                                                                                           
     stage('Continuous build')
                    {
                     sh 'mvn package'
