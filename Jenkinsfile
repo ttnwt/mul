@@ -1,4 +1,4 @@
-node('master') 
+node('build-in') 
 {
     stage('Continuous Download')
                    {
@@ -10,7 +10,7 @@ node('master')
                    }
     stage('Continuous deployment')
                    {
-                    deploy adapters: [tomcat8(credentialsId: 'qa', path: '', url: 'http://172.31.88.197:8080')], contextPath: 'qaenv', war: '**/*.war'
+                    deploy adapters: [tomcat8(credentialsId: 'qa', path: '', url: 'http://172.31.5.164:8080')], contextPath: 'qaenv', war: '**/*.war'
                    }
     stage('Continuous testing')
                    {
@@ -19,6 +19,6 @@ node('master')
      stage('Continuous delivery')
                    {
                     input message: 'Waiting for approval from executor', submitter: 'ttwnt'
-                    deploy adapters: [tomcat8(credentialsId: 'prodep', path: '', url: 'http://172.31.95.153:8080')], contextPath: 'catenv', war: '**/*.war'
+                    deploy adapters: [tomcat8(credentialsId: 'prodep', path: '', url: 'http://172.31.9.205:8080')], contextPath: 'catenv', war: '**/*.war'
                    }
 }
