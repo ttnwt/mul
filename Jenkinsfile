@@ -2,7 +2,7 @@ node('build-in')
 {
     stage('Continuous Download')
                    {
-                     git branch: 'feature', credentialsId: 'me', url: 'https://github.com/ttnwt/webapp.git'
+                     git branch: 'nonso', credentialsId: 'cd', url: 'https://https://github.com/ttnwt/mul.git'
                    }
     stage('Continuous build')
                    {
@@ -18,7 +18,7 @@ node('build-in')
                    }
      stage('Continuous delivery')
                    {
-                    input message: 'Waiting for approval from executor', submitter: 'ttwnt'
-                    deploy adapters: [tomcat8(credentialsId: 'prodep', path: '', url: 'http://172.31.9.205:8080')], contextPath: 'catenv', war: '**/*.war'
+                    input message: 'Waiting for approval from executor', submitter: 'nonso'
+                    deploy adapters: [tomcat8(credentialsId: 'prod', path: '', url: 'http://172.31.9.205:8080')], contextPath: 'prodenv', war: '**/*.war'
                    }
 }
