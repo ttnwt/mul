@@ -12,8 +12,7 @@ node('build-in')
                    {                                                                                                                 
                                       deploy adapters: [tomcat8(credentialsId: 'bbbb', path: '', url: 'http://172.31.5.164:8080')], contextPath: 'qaenv', war: '**/*.war'
                   } 
-                   }
-    stage('Continuous test')
+                     stage('Continuous test')
                    {                              
                      sh ' echo "testing is successful"'
                    }
@@ -23,4 +22,5 @@ node('build-in')
                      deploy adapters: [tomcat8(credentialsId: 'delivery', path: '', url: 'http://172.31.9.205:8080')], contextPath: 'prodenv', war: '**/*.war'
                  }  
                    }
-}
+
+
